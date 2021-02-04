@@ -23,5 +23,5 @@ I am planning to use a NodeMCU but for now I am doing tests using a Genuino Mega
 
 You can see it in action
 
-![](https://media.giphy.com/media/9V0Oreyd83isWcPKSI/giphy.gif)
 
+[![video](asset/abortino-leg-1.gif)](https://youtu.be/nkWvfnJiPlI)
