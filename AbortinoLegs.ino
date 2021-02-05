@@ -107,6 +107,7 @@ void loop() {
   delay(5000);
 }
 
+// hardcoded way to say hello J4F
 void hello(){
   frontLegLeft.set_top();
   frontFootLeft.set_top();
