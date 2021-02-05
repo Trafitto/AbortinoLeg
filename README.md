@@ -20,7 +20,9 @@ With the model there is also the code but I'm having fun rewriting by myself.
 
 I am planning to use a NodeMCU but for now I am doing tests using a Genuino Mega because I have it.
 
-You can see it in action
+You can see it in action:
 
 
 [![video](asset/abortino-leg-1.gif)](https://youtu.be/nkWvfnJiPlI)
+
+[All the servo finally mapped](https://youtu.be/5W0RX8oSo0k)
