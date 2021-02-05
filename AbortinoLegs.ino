@@ -11,39 +11,61 @@
 #define D6 12
 #define D7 13
 
-// TODO: Find better name for vertical and refator FootServo to be general 
-class FootServo{
-  
-  private:
+class BaseServo{
+  public:
     byte pin;
-    int home_pos;
-    int vertical_pos;
+    int bottom_pos;
+    int center_pos;
     Servo motor;
     unsigned int delay_time = 50;
-  public:
-     FootServo(byte pin, int home_pos, int vertical_pos){
+
+    BaseServo(byte pin, int center_pos, int bottom_pos){
       this->pin = pin;
-      this->home_pos = home_pos;
-      this->vertical_pos = vertical_pos;
+      this->center_pos = center_pos;
+      this->bottom_pos = bottom_pos;
     }
-    
+
     void set_up(){
       motor.attach(pin);
-      motor.write(home_pos);
+      motor.write(center_pos);
       delay(delay_time);
     }
-    
-    void set_home(){
-      motor.write(home_pos);
+    void set_center(){
+      motor.write(center_pos);
       delay(delay_time);
     }
 
-    void set_vertical(){
-      motor.write(vertical_pos);
+    void set_bottom(){
+      motor.write(bottom_pos);
       delay(delay_time);
     }
 };
 
+class LegServo: public BaseServo{
+  private:
+    int top_pos;
+  public:
+    LegServo(byte pin, int center_pos, int bottom_pos, int top_pos):BaseServo(pin, center_pos, bottom_pos){
+      this->pin = pin;
+      this->center_pos = center_pos;
+      this->bottom_pos = bottom_pos;
+      this->top_pos = top_pos;
+    }
+
+    void set_top(){
+      motor.write(top_pos);
+      delay(delay_time);
+    }
+};
+
+class FootServo: public BaseServo{
+  public:
+    FootServo(byte pin, int center_pos, int bottom_pos):BaseServo(pin, center_pos, bottom_pos){
+      this->pin = pin;
+      this->center_pos = center_pos;
+      this->bottom_pos = bottom_pos;
+    }
+};
 
 FootServo frontFootLeft = FootServo(D7, 0, 100);
 FootServo frontFootRight = FootServo(D6, 180, 100);
@@ -62,17 +84,17 @@ void setup() {
 }
 
 void loop() {
-    frontFootLeft.set_vertical();
-    frontFootRight.set_vertical();
-    backFootLeft.set_vertical();
-    backFootRight.set_vertical();
+    frontFootLeft.set_bottom();
+    frontFootRight.set_bottom();
+    backFootLeft.set_bottom();
+    backFootRight.set_bottom();
 
     delay(5000);
    
-    frontFootLeft.set_home();
-    frontFootRight.set_home();
-    backFootLeft.set_home();
-    backFootRight.set_home();
+    frontFootLeft.set_center();
+    frontFootRight.set_center();
+    backFootLeft.set_center();
+    backFootRight.set_center();
 
     delay(3000);
    

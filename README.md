@@ -9,17 +9,16 @@ Mini Quadruped bot
 ## Getting Started
 
 
-I use this awesome 3D printed [models](https://www.thingiverse.com/thing:38159) find on thingiverse, It is very minimalist but prints quickly.
+I 3D printed this awesome [models](https://www.thingiverse.com/thing:38159) found on thingiverse, it is very minimalist but prints quickly.
 
-
-It use the smal and cheap 9G servos.
+It use the small and cheap 9G servos.
 
 With the model there is also the code but I'm having fun rewriting by myself.
 
 
 ## Project
 
-I am planning to use a NodeMCU but for now I am doing tests using a Genuino Mega (I am using this as I had this)
+I am planning to use a NodeMCU but for now I am doing tests using a Genuino Mega because I have it.
 
 You can see it in action
 
