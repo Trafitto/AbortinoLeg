@@ -33,9 +33,11 @@ class BaseServo{
       this->top_pos = top_pos;
     }
 
+    virtual void set_home() = 0;
+
     void setup(){
       motor.attach(pin);
-      motor.write(center_pos);
+      set_home();
       delay(delay_time);
     }
     void set_center(){
@@ -67,6 +69,11 @@ class LegServo: public BaseServo{
       this->bottom_pos = bottom_pos;
       this->top_pos = top_pos;
     }
+
+    void set_home(){
+      set_center();
+    };
+
 };
 
 class FootServo: public BaseServo{
@@ -77,6 +84,9 @@ class FootServo: public BaseServo{
       this->bottom_pos = bottom_pos;
       this->top_pos = top_pos;
     }
+    void set_home(){
+      set_center();
+    };
 };
 
 // center - bottom -  top
