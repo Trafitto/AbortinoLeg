@@ -87,6 +87,16 @@ class FootServo: public BaseServo{
     void set_home(){
       set_center();
     };
+
+    void step_f(){
+      int angle;
+      if (bottom_pos>center_pos){
+        angle = bottom_pos - 15;
+      }else{
+        angle = bottom_pos + 15;
+      }
+      set_angle(angle);
+    };
 };
 
 // center - bottom -  top
