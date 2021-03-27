@@ -1,5 +1,6 @@
 
 #include <Servo.h>
+#include "BaseServo.h"
 
 // NODEmcu PIN
 #define D0 16
@@ -17,49 +18,7 @@
 #define PIN5 5
 #define PIN9 9
 #define PIN8 8
-class BaseServo{
-  public:
-    byte pin;
-    int bottom_pos;
-    int center_pos;
-    int top_pos;
-    Servo motor;
-    unsigned int delay_time = 50;
 
-    BaseServo(byte pin, int center_pos, int bottom_pos, int top_pos){
-      this->pin = pin;
-      this->center_pos = center_pos;
-      this->bottom_pos = bottom_pos;
-      this->top_pos = top_pos;
-    }
-
-    virtual void set_home() = 0;
-
-    void setup(){
-      motor.attach(pin);
-      set_home();
-      delay(delay_time);
-    }
-    void set_center(){
-      motor.write(center_pos);
-      delay(delay_time);
-    }
-
-    void set_bottom(){
-      motor.write(bottom_pos);
-      delay(delay_time);
-    }
-
-    void set_top(){
-      motor.write(top_pos);
-      delay(delay_time);
-    }
-
-    void set_angle(int angle){
-      motor.write(angle);
-      delay(delay_time);
-    }
-};
 
 class LegServo: public BaseServo{    
   public:
