@@ -38,3 +38,17 @@ void Legs::set_angle(int angle)
   delay(delay_time);
 }
 
+// TO TEST
+void Legs::step_f()
+{
+  int angle;
+  if (bottom_pos > center_pos)
+  {
+    angle = bottom_pos - 15;
+  }
+  else
+  {
+    angle = bottom_pos + 15;
+  }
+  set_angle(angle);
+};

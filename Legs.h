@@ -19,6 +19,7 @@
             void set_bottom();
             void set_top();
             void set_angle(int angle);
+            void step_f(); // TO TEST
     };
 
    
