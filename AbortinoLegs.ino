@@ -30,7 +30,7 @@ enum GeneralState
   COUNT
 };
 
-uint8_t state = HELLO;
+int state = HELLO;
 
 class Abortino
 {
@@ -75,6 +75,7 @@ public:
   // hardcoded way to say hello
   void hello()
   {
+
     frontLegLeft.set_top();
     frontFootLeft.set_top();
 
@@ -85,6 +86,14 @@ public:
     }
     frontLegLeft.set_center();
     frontFootLeft.set_bottom();
+  }
+  void sit()
+  {
+    backFootLeft.set_center();
+    backFootRight.set_center();
+
+    backLegRight.set_bottom();
+    backLegLeft.set_bottom();
   }
 
   uint8_t randomAction()
@@ -104,8 +113,9 @@ void setup()
 
 void loop()
 {
-  live();
+  //live();
   //abortinoLegs.hello();
+  //abortinoLegs.sit();
   delay(5000);
 }
 
