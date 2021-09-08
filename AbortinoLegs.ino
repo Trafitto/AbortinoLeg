@@ -17,11 +17,25 @@
 #define PIN9 9
 #define PIN8 8
 
-// center - bottom -  top
+// enum movementState {STOP, FORWARD, ROTATE_RIGHT, ROTATE_LEFT};
+enum GeneralState
+{
+  IDLE,
+  MOVING,
+  HAND,
+  HELLO,
+  HAPPY,
+  DANCE,
+  SIT,
+  COUNT
+};
+
+uint8_t state = HELLO;
 
 class Abortino
 {
 private:
+  // center - bottom -  top
   // FOOT SERVO
   Legs frontFootLeft = Legs(D7, 100, 180, 0);
   Legs frontFootRight = Legs(D6, 100, 0, 100);
@@ -54,33 +68,28 @@ public:
     // BACK RIGTH
     backFootRight.setup();
     backLegRight.setup();
+
+    delay(1500);
   }
 
-  // hardcoded way to say hello J4
+  // hardcoded way to say hello
   void hello()
   {
     frontLegLeft.set_top();
     frontFootLeft.set_top();
-    delay(500);
+
+    for (int i = 0; i <= 2; i++)
+    {
+      frontLegLeft.set_center();
+      frontLegLeft.set_top();
+    }
     frontLegLeft.set_center();
-    delay(500);
-    frontLegLeft.set_top();
-    delay(500);
-    frontFootLeft.set_center();
-    delay(500);
-    frontFootLeft.set_top();
-    delay(500);
-    frontLegLeft.set_center();
-    delay(500);
-    frontLegLeft.set_top();
-    delay(500);
-    frontLegLeft.set_center();
-    delay(500);
-    frontLegLeft.set_top();
-    delay(500);
-    frontLegLeft.set_center();
-    delay(500);
     frontFootLeft.set_bottom();
+  }
+
+  uint8_t randomAction()
+  {
+    return static_cast<GeneralState>(rand() % COUNT);
   }
 };
 
@@ -95,6 +104,31 @@ void setup()
 
 void loop()
 {
-  abortinoLegs.hello();
+  live();
+  //abortinoLegs.hello();
   delay(5000);
+}
+
+/*
+  Base state machine
+  Need to add some input for changing the state
+  TODO: Not Working, it seems that the state is null
+*/
+void live()
+{
+  Serial.write(state);
+  switch (state)
+  {
+  case IDLE:
+    delay(100);
+    state = abortinoLegs.randomAction();
+    break;
+  case HELLO:
+    abortinoLegs.hello();
+    state = IDLE;
+    break;
+  case DEFAULT:
+    state = HELLO;
+    break;
+  }
 }

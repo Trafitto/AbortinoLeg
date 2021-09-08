@@ -11,7 +11,7 @@
             int center_pos;
             int top_pos;
             Servo motor;
-            unsigned int delay_time;
+            unsigned int delay_time = 500;
         public:
             Legs(byte pin, int center_pos, int bottom_pos, int top_pos);
             void setup();
